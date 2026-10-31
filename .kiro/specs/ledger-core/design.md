@@ -297,7 +297,7 @@ const payOpArb  = fc.record({ kind: fc.constant('payment'), amount: amountArb })
 const phoneArb  = fc.stringMatching(/^\+255[67]\d{8}$/);
 ```
 
-For P1, the arbitrary sequence generator applies debts unconditionally, but for payments it first computes the running balance and either skips or clamps the payment so that the recorded payment never exceeds the balance — mirroring the repository's `recordPayment` guard. The test then asserts the in-memory ledger's balance equals `computeBalance(debts, payments)` and is `>= 0`.
+For P1, the arbitrary sequence generator applies debts unconditionally, but for payments it first computes the running balance and skips the payment when it would exceed the balance (invalid payments are dropped, never clamped) — mirroring the repository's `recordPayment` guard. The test then asserts the in-memory ledger's balance equals `computeBalance(debts, payments)` and is `>= 0`.
 
 ### 7.4 Unit tests
 
