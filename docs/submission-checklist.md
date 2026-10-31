@@ -34,7 +34,7 @@ Source: https://kiroween.devpost.com/rules (checked on Oct 31, 2026).
 | **Blog Post** (2,000 credits, top 100) | Public post on a third-party blog that mentions "Kiroween 2026 hackathon", published during the submission period | e.g. dev.to or Medium; reuse KIRO.md |
 | **Social Blitz** (3-month Kiro Pro+, 5 winners) | Post that **starts with** `#KiroweenHackathon26`, your favourite thing about Kiro and how it changed your approach; must be your own words, not AI writing | X or LinkedIn; the profile must match the submission |
 | Best Kiro Crew App ($1k) | A separate, newly created Kiro Crew app repo | Optional, only if there's time |
-| Best Ghost of Kiroween Past ($2k) | Registered for Kiroween 2025 | Only if you did |
+| ~~Best Ghost of Kiroween Past ($2k)~~ | Registered for Kiroween 2025 | ❌ Not eligible: this is our first Kiroween |
 | Best Student Project | All team members are current students, with proof | Only if it applies |
 
 ## Judging (5 criteria, 20% each)
