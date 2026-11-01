@@ -4,22 +4,22 @@ Ordered implementation checklist. Each task references the requirement(s) it sat
 
 ## Phase 1 — Scaffolding and types
 
-- [ ] **T1** Create `server/src/ussd/` directory. Write `state.ts` with `Language`, `UssdNode`, `UssdState`, `initialState()`. — *(design §2.1, §2.2, §3.1)*
-- [ ] **T2** Write `server/src/ussd/context.ts` with the `UssdContext` interface (shopName, ownerId, shopId, topDebtors, findCustomerByPhone). Import `Balance` and `Customer` types from `../ledger/types.js`. — **REQ-2.5**
-- [ ] **T3** Write `server/src/ussd/effects.ts` with the `UssdEffect` discriminated union (createShop, recordDebt, recordPayment, sendReminder). — **REQ-2.6**
+- [x] **T1** Create `server/src/ussd/` directory. Write `state.ts` with `Language`, `UssdNode`, `UssdState`, `initialState()`. — *(design §2.1, §2.2, §3.1)*
+- [x] **T2** Write `server/src/ussd/context.ts` with the `UssdContext` interface (shopName, ownerId, shopId, topDebtors, findCustomerByPhone). Import `Balance` and `Customer` types from `../ledger/types.js`. — **REQ-2.5**
+- [x] **T3** Write `server/src/ussd/effects.ts` with the `UssdEffect` discriminated union (createShop, recordDebt, recordPayment, sendReminder). — **REQ-2.6**
 
 ## Phase 2 — Copy templates
 
-- [ ] **T4** Write `server/src/ussd/messages.copy.ts` with `Copy` interface and `copy: Record<Language, Copy>` object. Implement all Swahili screen templates: mainMenu, registerShopPrompt, registerShopConfirm, registerShopDone, addDebtPhonePrompt, addDebtNamePrompt, addDebtAmountPrompt, addDebtConfirm, addDebtDone, paymentSelect, paymentPhonePrompt, paymentAmountPrompt, paymentOverPayment, paymentConfirm, paymentDone, whoOwes, reminderSelect, reminderConfirm, reminderDone, invalidPhone, invalidAmount, customerNotFound. Each returns full screen text with `CON `/`END ` prefix. — **REQ-10.1, REQ-10.2, REQ-3.1, REQ-3.2**
-- [ ] **T5** Implement the English (`en`) versions of all templates in `messages.copy.ts`, matching the Swahili structure. — **REQ-10.1, REQ-10.3**
-- [ ] **T6** Implement the reminder SMS template (tone 1, Rafiki) in both `sw` and `en` in `messages.copy.ts`, following `zimwi-voice.md`: include customer first name, shop name, amount in `TSh` format, and reply instruction (`Jibu LIPA au TAREHE dd/mm`). — **REQ-8.4, REQ-10.4**
-- [ ] **T7** Write `server/test/ussd/messages.test.ts`: assert every template starts with `CON ` or `END `, every screen template ≤ 182 chars with representative inputs (long shop name, 5 debtors with long names), reminder SMS ≤ 160 chars. — **REQ-9.1, REQ-9.2, REQ-8.5, REQ-10.1**
+- [x] **T4** Write `server/src/ussd/messages.copy.ts` with `Copy` interface and `copy: Record<Language, Copy>` object. Implement all Swahili screen templates: mainMenu, registerShopPrompt, registerShopConfirm, registerShopDone, addDebtPhonePrompt, addDebtNamePrompt, addDebtAmountPrompt, addDebtConfirm, addDebtDone, paymentSelect, paymentPhonePrompt, paymentAmountPrompt, paymentOverPayment, paymentConfirm, paymentDone, whoOwes, reminderSelect, reminderConfirm, reminderDone, invalidPhone, invalidAmount, customerNotFound. Each returns full screen text with `CON `/`END ` prefix. — **REQ-10.1, REQ-10.2, REQ-3.1, REQ-3.2**
+- [x] **T5** Implement the English (`en`) versions of all templates in `messages.copy.ts`, matching the Swahili structure. — **REQ-10.1, REQ-10.3**
+- [x] **T6** Implement the reminder SMS template (tone 1, Rafiki) in both `sw` and `en` in `messages.copy.ts`, following `zimwi-voice.md`: include customer first name, shop name, amount in `TSh` format, and reply instruction (`Jibu LIPA au TAREHE dd/mm`). — **REQ-8.4, REQ-10.4**
+- [x] **T7** Write `server/test/ussd/messages.test.ts`: assert every template starts with `CON ` or `END `, every screen template ≤ 182 chars with representative inputs (long shop name, 5 debtors with long names), reminder SMS ≤ 160 chars. — **REQ-9.1, REQ-9.2, REQ-8.5, REQ-10.1**
 
 ## Phase 3 — Telecom interface
 
-- [ ] **T8** Create `server/src/telecom/` directory. Write `server/src/telecom/telecom.ts` with the `Telecom` interface (`sendSms(to: string, message: string): Promise<void>`). — **REQ-11.1**
-- [ ] **T9** Write `server/src/telecom/fake.ts` with `FakeTelecom` class implementing `Telecom`: records messages in `messages: { to, message, timestamp }[]`, provides `clear()` method. — **REQ-11.2, REQ-11.3**
-- [ ] **T10** Write `server/test/telecom/fake.test.ts`: assert `sendSms` appends to array, `clear` empties, multiple sends accumulate. — **REQ-11.2**
+- [x] **T8** Create `server/src/telecom/` directory. Write `server/src/telecom/telecom.ts` with the `Telecom` interface (`sendSms(to: string, message: string): Promise<void>`). — **REQ-11.1**
+- [x] **T9** Write `server/src/telecom/fake.ts` with `FakeTelecom` class implementing `Telecom`: records messages in `messages: { to, message, timestamp }[]`, provides `clear()` method. — **REQ-11.2, REQ-11.3**
+- [x] **T10** Write `server/test/telecom/fake.test.ts`: assert `sendSms` appends to array, `clear` empties, multiple sends accumulate. — **REQ-11.2**
 
 ## Phase 4 — Pure state machine
 
